@@ -3,7 +3,7 @@
   <md-sidenav #sidenav mode='side' [opened]="isSidenavOpen" class="sidenav">
 
     <div class="scrolling-content">
-      <nav id="nav-mobile" class="center">
+      <div id="nav-mobile" class="center">
 
         <div class='links'>
           <a routerLink="feed" (click)="sidenav.toggle(); toggleIcon()">HOME</a>
@@ -14,7 +14,7 @@
         </div>
 
 
-      </nav>
+      </div>
     </div>
   </md-sidenav>
   <button md-fab class="fab" (click)="sidenav.toggle(); toggleIcon()">
@@ -25,11 +25,7 @@
   </button>
   <div class="scrolling-content">
 
-    <!-- <div class='container'> -->
-
       <router-outlet></router-outlet>
-
-    <!-- </div> -->
 
   </div>
 </md-sidenav-container>

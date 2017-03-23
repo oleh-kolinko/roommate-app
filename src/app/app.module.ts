@@ -12,7 +12,7 @@ import { VoteComponent } from './vote/vote.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { MoneyComponent } from './money/money.component';
 import { GodService } from './god.service'
-import { MaterializeModule } from "angular2-materialize";
+
 
 @NgModule({
   declarations: [
@@ -28,7 +28,6 @@ import { MaterializeModule } from "angular2-materialize";
     HttpModule,
     AppRoutingModule,
     MaterialModule,
-    MaterializeModule
 
   ],
   providers: [GodService],
