@@ -1,0 +1,17 @@
+<h1>TASKS</h1>
+<div class='row flex-wrap'>
+  <md-card class='col-xs-10 col-sm-8 col-md-6'>
+
+    <h1>CREATE NEW TASK</h1>
+    <br>
+    <md-select placeholder="Category">
+      <md-option *ngFor="let categorie of categories" [value]="categorie.value">
+        {{ categorie.viewValue }}
+      </md-option>
+    </md-select>
+    <br>
+      
+     <input type="date" class="datepicker">
+    <md-slide-toggle>Repeat</md-slide-toggle>
+  </md-card>
+</div>

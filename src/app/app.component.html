@@ -1,4 +1,35 @@
-<h1>
-  {{title}}
-</h1>
-<router-outlet></router-outlet>
+
+<md-sidenav-container class="sidenav-fab-container">
+  <md-sidenav #sidenav mode='side' [opened]="isSidenavOpen" class="sidenav">
+
+    <div class="scrolling-content">
+      <nav id="nav-mobile" class="center">
+
+        <div class='links'>
+          <a routerLink="feed" (click)="sidenav.toggle(); toggleIcon()">HOME</a>
+          <a routerLink="vote" (click)="sidenav.toggle(); toggleIcon()">VOTES</a>
+          <a routerLink="tasks" (click)="sidenav.toggle(); toggleIcon()">TASKS</a>
+          <a routerLink="money" (click)="sidenav.toggle(); toggleIcon()">MONEY</a>
+
+        </div>
+
+
+      </nav>
+    </div>
+  </md-sidenav>
+  <button md-fab class="fab" (click)="sidenav.toggle(); toggleIcon()">
+
+    <md-icon *ngIf="!isSidenavOpen" >menu</md-icon>
+    <md-icon *ngIf="isSidenavOpen">close</md-icon>
+
+  </button>
+  <div class="scrolling-content">
+
+    <!-- <div class='container'> -->
+
+      <router-outlet></router-outlet>
+
+    <!-- </div> -->
+
+  </div>
+</md-sidenav-container>
