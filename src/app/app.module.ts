@@ -11,7 +11,8 @@ import { FeedComponent } from './feed/feed.component';
 import { VoteComponent } from './vote/vote.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { MoneyComponent } from './money/money.component';
-import { GodService } from './god.service'
+import { GodService } from './god.service';
+import { LoginRegisterComponent } from './login-register/login-register.component'
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { GodService } from './god.service'
     FeedComponent,
     VoteComponent,
     TasksComponent,
-    MoneyComponent
+    MoneyComponent,
+    LoginRegisterComponent
   ],
   imports: [
     BrowserModule,
