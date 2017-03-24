@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
+import { MaterializeModule } from 'angular2-materialize'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { VoteComponent } from './vote/vote.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { MoneyComponent } from './money/money.component';
 import { GodService } from './god.service'
+import { ApiService } from './api.service'
 
 
 @NgModule({
@@ -28,9 +30,10 @@ import { GodService } from './god.service'
     HttpModule,
     AppRoutingModule,
     MaterialModule,
+    MaterializeModule
 
   ],
-  providers: [GodService],
+  providers: [GodService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

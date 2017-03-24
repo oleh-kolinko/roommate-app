@@ -1,8 +1,7 @@
-<h1>TASKS</h1>
 <div class='row flex-wrap'>
-  <md-card class='col-xs-10 col-sm-8 col-md-6'>
+  <md-card class='card col-xs-10 col-sm-8 col-md-6'>
 
-    <h1>CREATE NEW TASK</h1>
+    <h1>NEW TASK</h1>
     <br>
     <md-select placeholder="Category">
       <md-option *ngFor="let categorie of categories" [value]="categorie.value">
@@ -10,10 +9,32 @@
       </md-option>
     </md-select>
     <br>
-      <form materialize>
 
-        <input type="date" class="datepicker">
-      </form>
-    <md-slide-toggle>Repeat</md-slide-toggle>
+        <span>WHEN?</span>
+        <input id='datepicker' type="date" class="datepicker" placeholder="date">
+
+        <div class="switch">
+           <label>
+             No
+             <input type="checkbox">
+             <span class="lever"></span>
+             Yes
+           </label>
+         </div>
+         <form >
+           <p>
+             <input name="group1" type="radio" id="test1" />
+             <label for="test1">Everyday</label>
+           </p>
+           <p>
+             <input name="group1" type="radio" id="test2" />
+             <label for="test2">Everweek</label>
+           </p>
+           <p>
+             <input  name="group1" type="radio" id="test3"  />
+             <label for="test3">EveryMonth</label>
+           </p>
+
+         </form>
   </md-card>
 </div>

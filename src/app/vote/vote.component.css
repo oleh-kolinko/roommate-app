@@ -2,3 +2,7 @@
 .vote-name{
   width: 80%;
 }
+.option{
+  width: 60%;
+  display: inline-block;
+}

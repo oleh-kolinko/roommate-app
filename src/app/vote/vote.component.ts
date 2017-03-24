@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var jQuery: any;
+declare var $: any;
 @Component({
   selector: 'app-vote',
   templateUrl: './vote.component.html',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VoteComponent implements OnInit {
 
-  options = [{}];
+  options = [];
   constructor() { }
 
   ngOnInit() {
@@ -15,10 +16,19 @@ export class VoteComponent implements OnInit {
 
   addOption(){
     this.options.push({});
+    console.log(this.options)
+    setTimeout(()=>{
+      $(`#Option${this.options.length -1}`).parent().parent().slideDown(500);
+    },100)
+
   }
 
   delete(i){
-    this.options.splice(i,1);
+    $(`#Option${i}`).parent().parent().slideUp(500);
+    const options = this.options
+    setTimeout(()=>{
+      this.options.splice(i,1);
+    },500)
   }
 
   create(){

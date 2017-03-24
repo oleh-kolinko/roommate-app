@@ -1,1 +1,17 @@
 <h1>Welcome Home</h1>
+<h3>Roommates:</h3>
+
+
+<div class='error' *ngIf='errorMessage.length > 0'>
+  {{errorMessage}}
+</div>
+
+<h3>Votes:</h3>
+<div *ngFor='let vote of votes'>
+  {{vote | json}}
+</div>
+
+<h3>Tasks:</h3>
+<div *ngFor='let task of tasks'>
+  {{task | json}}
+</div>

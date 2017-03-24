@@ -6,10 +6,10 @@
       <div id="nav-mobile" class="center">
 
         <div class='links'>
-          <a routerLink="feed" (click)="sidenav.toggle(); toggleIcon()">HOME</a>
-          <a routerLink="vote" (click)="sidenav.toggle(); toggleIcon()">VOTES</a>
-          <a routerLink="tasks" (click)="sidenav.toggle(); toggleIcon()">TASKS</a>
-          <a routerLink="money" (click)="sidenav.toggle(); toggleIcon()">MONEY</a>
+          <a routerLink="feed" >HOME</a>
+          <a routerLink="vote" >VOTES</a>
+          <a routerLink="tasks" >TASKS</a>
+          <a routerLink="money" >MONEY</a>
 
         </div>
 
@@ -17,12 +17,14 @@
       </div>
     </div>
   </md-sidenav>
-  <button md-fab class="fab" (click)="sidenav.toggle(); toggleIcon()">
 
-    <md-icon *ngIf="!isSidenavOpen" >menu</md-icon>
-    <md-icon *ngIf="isSidenavOpen">close</md-icon>
+  <button md-fab class="fab red text-center" (click)="sidenav.toggle(); toggleIcon()">
 
+    <i class="material-icons" *ngIf="!isSidenavOpen">menu</i>
+    <i class="material-icons" *ngIf="isSidenavOpen">close</i>
+    
   </button>
+
   <div class="scrolling-content">
 
       <router-outlet></router-outlet>

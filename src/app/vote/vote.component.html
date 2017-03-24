@@ -1,12 +1,17 @@
-<h1>VOTES</h1>
-<div class='row flex-wrap'>
-<md-card class='col-xs-10 col-sm-8 col-md-6'>
-  <h1> CREATE NEW VOTE </h1>
-  <md-input-container class='vote-name'>
+<!-- <h1>VOTES</h1> -->
+<div class='row '>
+<md-card class='card col offset-s1 s10 offset-m2 m8 offset-l3 l6'>
+  <h1>NEW VOTE </h1>
+  <!-- <md-input-container class='vote-name'>
     <input mdInput placeholder="What are you voting for?" value="" >
-  </md-input-container>
+  </md-input-container> -->
+  <div class="input-field">
+        <input  id="name" type="text" class="validate">
+        <label for="name">What are you voting for?</label>
+  </div>
   <div *ngFor='let option of options;let i = index'>
-    <div class='row'>
+    <!-- <div class='row'>
+
       <md-radio-button disabled class="hidden-xs"></md-radio-button>
     <md-input-container required>
       <input mdInput placeholder="Vote Option" value="">
@@ -15,13 +20,29 @@
       <button md-button (click)="delete(i)" mdTooltip="Delete">
         <md-icon>close</md-icon>
       </button>
+    </div> -->
+     <div class="row" hidden>
+        <div class="input-field col s10 l11">
+              <input  id="Option{{i}}" type="text" class="validate">
+              <label for="Option{{i}}">Option {{i+1}}</label>
+        </div>
+        <a class="waves-effect waves-red btn-flat fab col s2 l1 center-align" (click)="delete(i)">
+           <i class="material-icons text-center" >close</i>
+       </a>
     </div>
   </div>
   <br>
-  <button md-raised-button class="md-primary" (click)='addOption()' >
-    <span>ADD ANOTHER OPTION</span> <md-icon>add_circle_outline</md-icon>
+  <button md-raised-button class="md-primary white" (click)='addOption()' >
+    <span>ADD OPTION</span> <md-icon>add_circle_outline</md-icon>
   </button>
+
   <br><br>
-  <button md-fab (click)='create()' mdTooltip="Create" ><md-icon class="md-48">check</md-icon></button>
+  <button md-fab (click)='create()' mdTooltip="Create" class='red' >
+    <i class="material-icons">add</i>
+  </button>
+
+  <!-- <button class="btn-floating btn-large waves-effect waves-light red" (click)='create()'> -->
+
+  <!-- </button> -->
 </md-card>
 </div>
