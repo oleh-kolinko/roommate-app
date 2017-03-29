@@ -6,10 +6,37 @@
       <div id="nav-mobile" class="center">
 
         <div class='links'>
-          <a routerLink="feed" >HOME</a>
+          <div class="link-wrapper">
+              <span class="inner-wrapper wrapper-16">
+                  <a class="link hover-16" routerLink='feed'>HOME</a>
+              </span>
+          </div>
+          <div class="link-wrapper">
+              <span class="inner-wrapper wrapper-16">
+                  <a class="link hover-16" routerLink='votes'>VOTES</a>
+              </span>
+          </div>
+          <div class="link-wrapper">
+              <span class="inner-wrapper wrapper-16">
+                  <a class="link hover-16" routerLink='tasks'>TASKS</a>
+              </span>
+          </div>
+          <div class="link-wrapper">
+              <span class="inner-wrapper wrapper-16">
+                  <a class="link hover-16" routerLink='money'>MONEY</a>
+              </span>
+          </div>
+          <div class="link-wrapper">
+              <span class="inner-wrapper wrapper-16">
+                  <a class="link hover-16" href='/logout'>LOGOUT</a>
+              </span>
+          </div>
+          <!-- <a routerLink="feed" >HOME</a>
           <a routerLink="vote" >VOTES</a>
           <a routerLink="tasks" >TASKS</a>
           <a routerLink="money" >MONEY</a>
+          <a  href='/logout'  >LOGOUT</a> -->
+          <a  (click)='copyHouse()' >COPY HOUSE TOKEN</a>
 
         </div>
 
@@ -22,7 +49,7 @@
 
     <i class="material-icons" *ngIf="!isSidenavOpen">menu</i>
     <i class="material-icons" *ngIf="isSidenavOpen">close</i>
-    
+
   </button>
 
   <div class="scrolling-content">

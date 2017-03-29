@@ -1,29 +1,24 @@
 <!-- <h1>VOTES</h1> -->
 <div class='row '>
-<md-card class='card col offset-s1 s10 offset-m2 m8 offset-l3 l6'>
+<md-card class='card col offset-s1 s10 offset-m2 m8 offset-l3 l6 animated fadeIn'>
   <h1>NEW VOTE </h1>
-  <!-- <md-input-container class='vote-name'>
-    <input mdInput placeholder="What are you voting for?" value="" >
-  </md-input-container> -->
+
   <div class="input-field">
-        <input  id="name" type="text" class="validate">
+        <input  id="name" type="text" class="validate" [(ngModel)]='voteInfo.name'>
         <label for="name">What are you voting for?</label>
   </div>
+
+  <md-select placeholder="Category" [(ngModel)]='voteInfo.category'>
+    <md-option *ngFor="let categorie of categories" [value]="categorie.value">
+      {{ categorie.viewValue }}
+    </md-option>
+  </md-select><br><br>
+
   <div *ngFor='let option of options;let i = index'>
-    <!-- <div class='row'>
 
-      <md-radio-button disabled class="hidden-xs"></md-radio-button>
-    <md-input-container required>
-      <input mdInput placeholder="Vote Option" value="">
-    </md-input-container>
-
-      <button md-button (click)="delete(i)" mdTooltip="Delete">
-        <md-icon>close</md-icon>
-      </button>
-    </div> -->
      <div class="row" hidden>
         <div class="input-field col s10 l11">
-              <input  id="Option{{i}}" type="text" class="validate">
+              <input  id="Option{{i}}" type="text" class="validate" [(ngModel)]='voteInfo.options[i].name'>
               <label for="Option{{i}}">Option {{i+1}}</label>
         </div>
         <a class="waves-effect waves-red btn-flat fab col s2 l1 center-align" (click)="delete(i)">
@@ -31,18 +26,18 @@
        </a>
     </div>
   </div>
+
   <br>
+
   <button md-raised-button class="md-primary white" (click)='addOption()' >
     <span>ADD OPTION</span> <md-icon>add_circle_outline</md-icon>
   </button>
 
   <br><br>
-  <button md-fab (click)='create()' mdTooltip="Create" class='red' >
+  <div class='r-btn'><button md-fab (click)='create()' mdTooltip="Create" class='red' >
     <i class="material-icons">add</i>
-  </button>
+  </button></div>
 
-  <!-- <button class="btn-floating btn-large waves-effect waves-light red" (click)='create()'> -->
 
-  <!-- </button> -->
 </md-card>
 </div>

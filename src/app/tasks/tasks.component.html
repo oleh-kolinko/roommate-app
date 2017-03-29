@@ -1,9 +1,14 @@
 <div class='row flex-wrap'>
-  <md-card class='card col-xs-10 col-sm-8 col-md-6'>
+  <md-card class='card col-xs-10 col-sm-8 col-md-6 animated fadeIn'>
 
     <h1>NEW TASK</h1>
     <br>
-    <md-select placeholder="Category">
+    <div class="input-field">
+          <input  id="name" type="text" class="validate"
+          [(ngModel)]='taskInfo.name' required="true">
+          <label for="name">What's the task? </label>
+    </div>
+    <md-select placeholder="Category" [(ngModel)]='taskInfo.category'>
       <md-option *ngFor="let categorie of categories" [value]="categorie.value">
         {{ categorie.viewValue }}
       </md-option>
@@ -11,30 +16,39 @@
     <br>
 
         <span>WHEN?</span>
-        <input id='datepicker' type="date" class="datepicker" placeholder="date">
+        <input id='datepicker' type='text' class="datepicker"
+         placeholder="date">
 
+        <br>REPEAT?
         <div class="switch">
            <label>
              No
-             <input type="checkbox">
+             <input type="checkbox" [(ngModel)]='taskInfo.repeat'>
              <span class="lever"></span>
              Yes
            </label>
          </div>
-         <form >
+         <br>
+         <form *ngIf='taskInfo.repeat'>
            <p>
              <input name="group1" type="radio" id="test1" />
-             <label for="test1">Everyday</label>
+             <label for="test1">Every Day</label>
            </p>
            <p>
              <input name="group1" type="radio" id="test2" />
-             <label for="test2">Everweek</label>
+             <label for="test2">Ever Week</label>
            </p>
            <p>
              <input  name="group1" type="radio" id="test3"  />
-             <label for="test3">EveryMonth</label>
+             <label for="test3">Every Month</label>
            </p>
 
          </form>
+
+         <br><br>
+         <div class='r-btn'><button md-fab (click)='create()' mdTooltip="Create" class='red' >
+           <i class="material-icons">add</i>
+         </button></div>
+
   </md-card>
 </div>

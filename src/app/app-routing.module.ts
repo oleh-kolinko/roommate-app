@@ -11,7 +11,7 @@ const routes: Routes = [
     component: FeedComponent,
   },
   {
-    path: 'vote',
+    path: 'votes',
     component: VoteComponent,
   },
   {
@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'money',
     component: MoneyComponent,
+  },
+  {
+    path: '**',//Everything
+    redirectTo: 'feed',
   }
 ];
 

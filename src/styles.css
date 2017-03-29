@@ -26,5 +26,13 @@ md-icon {
   margin-top: 0!important;
 }
 .card{
+  position: relative;
   padding: 40px !important;
+}
+.r-btn{
+  float: right;
+  position: absolute;
+  bottom: -26px;
+  right: 10%;
+  z-index: 1;
 }

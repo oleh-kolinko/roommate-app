@@ -16,12 +16,37 @@ export class FeedComponent implements OnInit {
 
   ngOnInit() {
     this.api.getVotes()
-      .then( apiResult => this.votes = apiResult)
-      .catch( err => this.errorMessage = 'There was an error. Try again later')
+      .then( apiResult => {
+          this.votes = apiResult
+      })
+      .catch( err => console.log(err))
 
     this.api.getTasks()
-        .then( apiResult => this.tasks = apiResult)
-        .catch( err => this.errorMessage = 'There was an error. Try again later')
+        .then( apiResult => {
+            this.tasks = apiResult
+        })
+        .catch( err => console.log(err))
+
+    this.updateData();
+    setInterval(()=>{
+      this.updateData();
+    },1000);
+
   }
 
+  updateData(){
+    this.api.getVotes()
+      .then( apiResult => {
+        if(JSON.stringify(this.votes)!=JSON.stringify(apiResult))
+          this.votes = apiResult
+      })
+      .catch( err => console.log(err))
+
+    this.api.getTasks()
+        .then( apiResult => {
+          if(JSON.stringify(this.tasks)!=JSON.stringify(apiResult))
+            this.tasks = apiResult
+        })
+        .catch( err => console.log(err))
+  }
 }
