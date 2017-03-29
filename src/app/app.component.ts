@@ -14,7 +14,11 @@ declare var $: any;
 })
 export class AppComponent {
 
-  user = null;
+  user = {
+    username: '',
+    house: '',
+    img: ''
+  };
   constructor(
     private api: ApiService,
      private god: GodService,

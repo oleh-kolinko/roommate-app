@@ -5,6 +5,16 @@
     <div class="scrolling-content">
       <div id="nav-mobile" class="center">
 
+        <div class='profile-image'>
+          <img src="{{user.img}}" alt="profile-image">
+          <br>
+          <h4 class='text-center'>{{user.username}}</h4>
+          <button md-fab class="fab blue text-center"
+            (click)='copyHouse()'
+            mdTooltip="Copy house token">
+            <i class="material-icons">home</i>
+          </button>
+        </div>
         <div class='links'>
           <div class="link-wrapper">
               <span class="inner-wrapper wrapper-16">
@@ -36,7 +46,7 @@
           <a routerLink="tasks" >TASKS</a>
           <a routerLink="money" >MONEY</a>
           <a  href='/logout'  >LOGOUT</a> -->
-          <a  (click)='copyHouse()' >COPY HOUSE TOKEN</a>
+
 
         </div>
 
@@ -45,7 +55,7 @@
     </div>
   </md-sidenav>
 
-  <button md-fab class="fab red text-center" (click)="sidenav.toggle(); toggleIcon()">
+  <button md-fab class="fab fab-menu red text-center" (click)="sidenav.toggle(); toggleIcon()">
 
     <i class="material-icons" *ngIf="!isSidenavOpen">menu</i>
     <i class="material-icons" *ngIf="isSidenavOpen">close</i>

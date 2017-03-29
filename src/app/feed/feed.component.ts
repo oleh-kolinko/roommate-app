@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service'
+import { GodService } from '../god.service'
 
+declare var $:any;
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -11,10 +13,20 @@ export class FeedComponent implements OnInit {
   votes = [];
   tasks = [];
   errorMessage = ''
-
-  constructor(private api: ApiService) { }
+  voteSelect= [];
+  user = {
+    username: '',
+    house: '',
+    img: '',
+    _id: '',
+  };
+  constructor(private api: ApiService, private god: ApiService) { }
 
   ngOnInit() {
+    this.api.getUser()
+        .then( apiResult => this.user = apiResult)
+        .catch( err => console.log(err))
+
     this.api.getVotes()
       .then( apiResult => {
           this.votes = apiResult
@@ -32,6 +44,18 @@ export class FeedComponent implements OnInit {
       this.updateData();
     },1000);
 
+  }
+
+  voteClick(id){
+
+    let val;
+    val = $(`input[name="${id}"]:checked`).val();
+
+    this.api.postVoteOption(id, val, this.user._id)
+      .then( apiResult => {
+          this.updateData()
+      })
+      .catch( err => console.log(err))
   }
 
   updateData(){

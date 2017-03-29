@@ -9,24 +9,37 @@
 
 <!-- ================================================================== -->
   <div class='col s12 offset-l1 l5'>
-    <h3>Votes:</h3>
-    <div *ngFor='let vote of votes'>
+    <h3 >Votes:</h3>
+    <div *ngFor='let vote of votes; let i = index'>
       <md-card class='card col s12 hoverable'>
 
         <div *ngIf='vote.category == "general"' class='category green'><h4 class='text-center'>{{vote.name}}</h4></div>
         <div *ngIf='vote.category == "chores"' class='category blue'><h4 class='text-center'>{{vote.name}}</h4></div>
         <div *ngIf='vote.category == "fun"' class='category red' ><h4 class='text-center'>{{vote.name}}</h4></div>
         <div class='cat-name'>{{vote.category}} </div>
-        <form>
-          <p *ngFor='let option of vote.options red'>
-            <input name="{{vote.name}}" type="radio" id="{{option.name}}" />
-            <label for="{{option.name}}">{{option.name}}</label>
-          </p>
-        </form>
 
-        <div class='r-btn'><button  md-fab (click)='vote($event.target)' mdTooltip="Submit vote" class='red' >
-          <i class="material-icons">send</i>
-        </button></div>
+        <div *ngIf='!vote.votedUsers.includes(user._id)'>
+
+          <form>
+            <p *ngFor='let option of vote.options; let j = index' >
+              <input name="{{vote._id}}"
+              type="radio"
+              id="{{option.name}}"
+              value='{{j}}'/>
+              <label for="{{option.name}}">{{option.name}}</label>
+            </p>
+          </form>
+          <div class='r-btn'><button  md-fab (click)="voteClick(vote._id)" mdTooltip="Submit vote" class='red' >
+            <i class="material-icons">send</i>
+          </button></div>
+        </div>
+
+        <div *ngIf='vote.votedUsers.includes(user._id)'>
+            <div *ngFor='let option of vote.options'>
+              {{option.name}} :
+              {{option.votes}}
+            </div>
+        </div>
       </md-card>
 
     </div>

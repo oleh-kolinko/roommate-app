@@ -22,15 +22,26 @@ a{
   height: 100vh;
 }
 
-.fab {
+.fab-menu {
   z-index: 1;
   position: absolute;
   top: 20px;
   left: 20px;
 }
 
-
-
+.profile-image img{
+  width: 60%;
+  margin-top: 10px;
+  border-radius: 50%;
+}
+.profile-image h4{
+  display: inline-block;
+  text-transform: uppercase;
+  color: #f44336;
+}
+.profile-image button{
+  transform: scale(0.7);
+}
 
 
 .link-cont {

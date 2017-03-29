@@ -20,6 +20,21 @@ export class ApiService {
     .toPromise()
     .then( apiResponse => apiResponse.json() )
   }
+
+  postVoteOption(id, i, userId){
+
+    const obj={
+      id: id,
+      i: i,
+      userId: userId
+    }
+    console.log(obj)
+
+    return this.http.put(`${this.BASE_URL}/api/votes`,obj)
+    .toPromise()
+    .then( apiResponse => apiResponse.json() )
+  }
+
   getTasks(){
     return this.http.get(`${this.BASE_URL}/api/tasks`)
     .toPromise()
