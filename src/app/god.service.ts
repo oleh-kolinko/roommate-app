@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class GodService {
 
-  user = {} ;
+  user = {
+    house: ''
+  } ;
 
   constructor() {}
 

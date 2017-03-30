@@ -27,9 +27,15 @@ export class AppComponent {
    ){}
 
   ngOnInit(){
+
+
     this.api.getUser()
         .then( apiResult => this.user = apiResult)
         .catch( err => console.log(err))
+
+    $(document).ready(function(){
+    $('.materialboxed').materialbox();
+    });
   }
   isSidenavOpen: boolean = false;
 

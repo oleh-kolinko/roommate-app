@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { GodService } from './god.service'
 
 @Injectable()
 export class ApiService {
 
   BASE_URL: string = 'http://localhost:3000'
+  // BASE_URL: string = ''
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private god: GodService,) { }
 
   getVotes(){
     return this.http.get(`${this.BASE_URL}/api/votes`)
@@ -31,6 +33,15 @@ export class ApiService {
     console.log(obj)
 
     return this.http.put(`${this.BASE_URL}/api/votes`,obj)
+    .toPromise()
+    .then( apiResponse => apiResponse.json() )
+  }
+
+  deleteTask(id){
+    const obj={
+      id:id
+    }
+    return this.http.patch(`${this.BASE_URL}/api/tasks`,obj)
     .toPromise()
     .then( apiResponse => apiResponse.json() )
   }

@@ -18,11 +18,12 @@ import { ApiService } from './api.service'
 
 @NgModule({
   declarations: [
-    AppComponent,
+
     FeedComponent,
     VoteComponent,
     TasksComponent,
-    MoneyComponent
+    MoneyComponent,
+    AppComponent,
   ],
   imports: [
     BrowserModule,

@@ -57,7 +57,13 @@ export class FeedComponent implements OnInit {
       })
       .catch( err => console.log(err))
   }
-
+  deleteTask(id){
+    this.api.deleteTask(id)
+      .then( apiResult => {
+          this.updateData()
+      })
+      .catch( err => console.log(err))
+  }
   updateData(){
     this.api.getVotes()
       .then( apiResult => {

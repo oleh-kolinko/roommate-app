@@ -1,5 +1,3 @@
-<h1>Welcome Home</h1>
-
 
 <div class='error' *ngIf='errorMessage.length > 0'>
   {{errorMessage}}
@@ -9,13 +7,13 @@
 
 <!-- ================================================================== -->
   <div class='col s12 offset-l1 l5'>
-    <h3 >Votes:</h3>
+    <h3 class='center-align'>VOTES:</h3>
     <div *ngFor='let vote of votes; let i = index'>
       <md-card class='card col s12 hoverable'>
 
-        <div *ngIf='vote.category == "general"' class='category green'><h4 class='text-center'>{{vote.name}}</h4></div>
-        <div *ngIf='vote.category == "chores"' class='category blue'><h4 class='text-center'>{{vote.name}}</h4></div>
-        <div *ngIf='vote.category == "fun"' class='category red' ><h4 class='text-center'>{{vote.name}}</h4></div>
+        <div *ngIf='vote.category == "general"' class='category green'><h4 class='center-align'>{{vote.name}}</h4></div>
+        <div *ngIf='vote.category == "chores"' class='category blue'><h4 class='center-align'>{{vote.name}}</h4></div>
+        <div *ngIf='vote.category == "fun"' class='category red' ><h4 class='center-align'>{{vote.name}}</h4></div>
         <div class='cat-name'>{{vote.category}} </div>
 
         <div *ngIf='!vote.votedUsers.includes(user._id)'>
@@ -36,8 +34,20 @@
 
         <div *ngIf='vote.votedUsers.includes(user._id)'>
             <div *ngFor='let option of vote.options'>
-              {{option.name}} :
-              {{option.votes}}
+              {{option.name}}
+              <span *ngIf='option.votes>0'>
+                <!-- ( {{ option.votes / vote.totalVotes  *100 | number:'1.0-1'}} %) -->
+                <div class="chart-o" >
+                     <div class="chart-i" [ngStyle]="{ 'width.%': option.votes / vote.totalVotes  *100 }"
+                      mdTooltip="{{ option.votes / vote.totalVotes  *100 | number:'1.0-1'}} %"></div>
+                 </div>
+              </span>
+              <span *ngIf='option.votes == 0'>
+                <div class="chart-o">
+                     <div class="chart-i" style="width: 0%"
+                      mdTooltip="0 %"></div>
+                 </div>
+              </span>
             </div>
         </div>
       </md-card>
@@ -47,19 +57,21 @@
 
   <!-- ================================================================== -->
   <div class='col s12 l5'>
-    <h3>Tasks:</h3>
+    <h3 class='center-align'>TASKS:</h3>
     <div *ngFor='let task of tasks'>
       <md-card class='card col s12 hoverable'>
 
-        <div *ngIf='task.category == "general"' class='category green'><h4 class='text-center'>{{task.name}}</h4></div>
-        <div *ngIf='task.category == "chores"' class='category blue'><h4 class='text-center'>{{task.name}}</h4></div>
-        <div *ngIf='task.category == "fun"' class='category red' ><h4 class='text-center'>{{task.name}}</h4></div>
+        <div *ngIf='task.category == "general"' class='category green'><h4 class='center-align'>{{task.name}}</h4></div>
+        <div *ngIf='task.category == "chores"' class='category blue'><h4 class='center-align'>{{task.name}}</h4></div>
+        <div *ngIf='task.category == "fun"' class='category red' ><h4 class='center-align'>{{task.name}}</h4></div>
 
         <div class='cat-name'>{{task.category}} </div>
         <p class='icon-p'><i class="material-icons">insert_invitation</i>
           {{task.date | date: 'dd MMMM, yyyy'}}</p>
 
-
+          <div class='r-btn'><button  md-fab (click)="deleteTask(task._id)" mdTooltip="Done with this task" class='red' >
+            <i class="material-icons">check</i>
+          </button></div>
       </md-card>
 
     </div>

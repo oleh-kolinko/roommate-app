@@ -29,12 +29,18 @@ a{
   left: 20px;
 }
 
+.image-wrap{
+  margin-left: 70px;
+}
+
 .profile-image img{
-  width: 60%;
+
+  width: 70%;
   margin-top: 10px;
   border-radius: 50%;
 }
 .profile-image h4{
+  margin: 0;
   display: inline-block;
   text-transform: uppercase;
   color: #f44336;
@@ -55,7 +61,7 @@ a{
   position: relative;
   text-decoration: none;
   /*padding: 10px 0;*/
-  font-size: 3em;
+  font-size: 2.5em;
   color: #333;
 }
 a{

@@ -56,3 +56,14 @@ h4{
   transform-origin: bottom left;
   transform: rotate(90deg);
 }
+
+.chart-o{
+  margin: 3px;
+  width: 100%;
+  height: 20px;
+  background-color: #f9cecb;
+}
+.chart-i{
+  height: 20px;
+  background-color: #f44336;
+}

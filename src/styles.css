@@ -1,7 +1,9 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:400,300);*/
+@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
+
 body {
   background: #fff;
-  font-family: 'Roboto', sans-serif;
+  font-family:sans-serif;
 }
 label{
   font-weight: normal;
