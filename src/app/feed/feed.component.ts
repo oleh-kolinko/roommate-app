@@ -12,6 +12,7 @@ export class FeedComponent implements OnInit {
 
   votes = [];
   tasks = [];
+  roommates = [];
   errorMessage = ''
   voteSelect= [];
   user = {
@@ -20,12 +21,18 @@ export class FeedComponent implements OnInit {
     img: '',
     _id: '',
   };
-  constructor(private api: ApiService, private god: ApiService) { }
+
+  constructor(private api: ApiService, private god: GodService) { }
 
   ngOnInit() {
     this.api.getUser()
-        .then( apiResult => this.user = apiResult)
+        .then( apiResult => {
+          this.user = apiResult
+          this.api.getRoommates(apiResult.house)
+          .then( apiResult => {this.roommates = apiResult})
+        })
         .catch( err => console.log(err))
+
 
     this.api.getVotes()
       .then( apiResult => {
@@ -39,6 +46,11 @@ export class FeedComponent implements OnInit {
         })
         .catch( err => console.log(err))
 
+    this.api.getRoommates(this.user.house)
+        .then( apiResult => {
+            this.roommates = apiResult
+        })
+        .catch( err => console.log(err))
     this.updateData();
     setInterval(()=>{
       this.updateData();
@@ -76,6 +88,13 @@ export class FeedComponent implements OnInit {
         .then( apiResult => {
           if(JSON.stringify(this.tasks)!=JSON.stringify(apiResult))
             this.tasks = apiResult
+        })
+        .catch( err => console.log(err))
+
+    this.api.getRoommates(this.user.house)
+        .then( apiResult => {
+          if(JSON.stringify(this.roommates)!=JSON.stringify(apiResult))
+            this.roommates = apiResult
         })
         .catch( err => console.log(err))
   }

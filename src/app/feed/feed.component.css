@@ -15,6 +15,10 @@ label:hover{
   padding-top: 100px !important;
   margin-bottom: 20px;
 }
+.header{
+  padding: 90px 10px 10px 10px !important;
+  margin-bottom: 0px;
+}
 
 .category{
   position: absolute;
@@ -40,8 +44,11 @@ label:hover{
 }
 .blue{
   background-color: #2196f3;
-
 }
+.amb{
+  background-color: #ffc107;
+}
+
 h4{
   color:#fff;
   z-index: 1;

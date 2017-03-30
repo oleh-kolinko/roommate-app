@@ -6,8 +6,8 @@ import { GodService } from './god.service'
 @Injectable()
 export class ApiService {
 
-  BASE_URL: string = 'http://localhost:3000'
-  // BASE_URL: string = ''
+  // BASE_URL: string = 'http://localhost:3000'
+  BASE_URL: string = ''
 
   constructor(private http: Http, private god: GodService,) { }
 
@@ -42,6 +42,15 @@ export class ApiService {
       id:id
     }
     return this.http.patch(`${this.BASE_URL}/api/tasks`,obj)
+    .toPromise()
+    .then( apiResponse => apiResponse.json() )
+  }
+
+  getRoommates(houseid){
+    const obj={
+      id:houseid
+    }
+    return this.http.patch(`${this.BASE_URL}/api/roommates`,obj)
     .toPromise()
     .then( apiResponse => apiResponse.json() )
   }

@@ -2,7 +2,19 @@
 <div class='error' *ngIf='errorMessage.length > 0'>
   {{errorMessage}}
 </div>
-
+<div class="row ">
+  <md-card class='card header col offset-s1 s10 hoverable'>
+    <div class='category amb'>
+      <h4 class='center-align'>ROOM-8</h4>
+    </div>
+    <span *ngFor='let roommate of roommates'>
+      <span class="chip">
+        <img [src]="roommate.img" alt="Contact Person">
+        {{roommate.username | uppercase}}
+      </span>
+    </span>
+  </md-card>
+</div>
 <div class="row">
 
 <!-- ================================================================== -->

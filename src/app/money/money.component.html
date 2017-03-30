@@ -1,1 +1,34 @@
-<h1>MONEY</h1>
+
+<div class='row'>
+  <md-card class='card col offset-s1 s10 offset-m2 m8 offset-l3 l6 animated fadeIn'>
+    <h1>NEW EXPENSE</h1>
+    <div class="input-field">
+          <input  id="name" type="text" class="validate"
+          [(ngModel)]='loanInfo.name' required="true">
+          <label for="name">What are you paying for? </label>
+    </div>
+    <div class="input-field">
+          <input  id="name" type="number"
+           class="validate" min='0'
+          [(ngModel)]='loanInfo.cost' required="true">
+          <label for="name">How much it costs? </label>
+    </div>
+    <h5>Split beetwen:</h5>
+    <div *ngFor='let roommate of roommates'>
+      <p>
+      <input type="checkbox" [id]="roommate.username" checked/>
+      <label [for]="roommate.username">
+      <span class="chip">
+        <img [src]="roommate.img" alt="Contact Person">
+        {{roommate.username | uppercase}}
+      </span>
+      </label>
+      </p>
+    </div>
+
+    <br><br>
+    <div class='r-btn'><button md-fab (click)='create()' mdTooltip="Create" class='red' >
+      <i class="material-icons">add</i>
+    </button></div>
+  </md-card>
+</div>
