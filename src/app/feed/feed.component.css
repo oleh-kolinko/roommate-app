@@ -12,8 +12,10 @@ label:hover{
 
 .card{
   position: relative;
-  padding-top: 100px !important;
   margin-bottom: 20px;
+}
+.cat-card{
+  padding-top: 100px !important;
 }
 .header{
   padding: 90px 10px 10px 10px !important;
@@ -28,8 +30,15 @@ label:hover{
   left: 0;
   z-index: 0;
 }
+.loan{
+  background-color: #f44336;
+  color: #333;
+  padding: 0px 0px 0px 0px !important;
+}
+
+
 @media only screen and (max-width : 1040px) {
-.card{
+.cat-card{
     padding-top: 120px !important;
 }
 .category{

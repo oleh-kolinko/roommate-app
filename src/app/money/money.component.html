@@ -1,6 +1,6 @@
 
 <div class='row'>
-  <md-card class='card col offset-s1 s10 offset-m2 m8 offset-l3 l6 animated fadeIn'>
+  <md-card class='card col offset-s1 s10 offset-m2 m8 offset-l3 l6'>
     <h1>NEW EXPENSE</h1>
     <div class="input-field">
           <input  id="name" type="text" class="validate"
@@ -16,7 +16,7 @@
     <h5>Split beetwen:</h5>
     <div *ngFor='let roommate of roommates'>
       <p>
-      <input type="checkbox" [id]="roommate.username" checked/>
+      <input type="checkbox" [id]="roommate.username" [(ngModel)]="roommate.toggleValue"/>
       <label [for]="roommate.username">
       <span class="chip">
         <img [src]="roommate.img" alt="Contact Person">

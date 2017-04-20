@@ -12,6 +12,7 @@ export class FeedComponent implements OnInit {
 
   votes = [];
   tasks = [];
+  loans = [];
   roommates = [];
   errorMessage = ''
   voteSelect= [];
@@ -46,6 +47,20 @@ export class FeedComponent implements OnInit {
         })
         .catch( err => console.log(err))
 
+    this.api.getLoans()
+        .then( apiResult => {
+            this.loans = apiResult
+            this.loans.forEach( loan=>{
+              loan.payer = $.grep(this.roommates, function(e){ return e._id == loan.payerId; })[0];
+              loan.receiver = $.grep(this.roommates, function(e){ return e._id == loan.receiverId; })[0];
+              if(loan.receiver === this.user._id)
+                loan.currentUserIsReceiver = true
+                else
+                loan.currentUserIsReceiver = false
+            })
+        })
+        .catch( err => console.log(err))
+
     this.api.getRoommates(this.user.house)
         .then( apiResult => {
             this.roommates = apiResult
@@ -76,6 +91,19 @@ export class FeedComponent implements OnInit {
       })
       .catch( err => console.log(err))
   }
+
+  updateLoanPeople(){
+    this.loans.forEach( loan=>{
+      loan.payer = $.grep(this.roommates, function(e){ return e._id == loan.payerId; })[0];
+      loan.receiver = $.grep(this.roommates, function(e){ return e._id == loan.receiverId; })[0];
+      if(loan.receiverId == this.user._id)
+        loan.currentUserIsReceiver = true
+        else
+        loan.currentUserIsReceiver = false
+    })
+    // console.log(this.loans)
+  }
+
   updateData(){
     this.api.getVotes()
       .then( apiResult => {
@@ -88,6 +116,14 @@ export class FeedComponent implements OnInit {
         .then( apiResult => {
           if(JSON.stringify(this.tasks)!=JSON.stringify(apiResult))
             this.tasks = apiResult
+        })
+        .catch( err => console.log(err))
+
+    this.api.getLoans()
+        .then( apiResult => {
+          if(JSON.stringify(this.tasks)!=JSON.stringify(apiResult))
+            this.loans = apiResult
+            this.updateLoanPeople();
         })
         .catch( err => console.log(err))
 
