@@ -10,13 +10,14 @@ declare var $:any;
 })
 export class FeedComponent implements OnInit {
 
-  votes = [];
-  tasks = [];
-  loans = [];
-  roommates = [];
-  errorMessage = ''
-  voteSelect= [];
-  user = {
+  votes = [];  //All votes  from API
+  tasks = [];  //All tasks from API
+  loadedLoans = [];//Loans from API serialized
+  loans = []; //All loans deserialized
+  roommates = []; //All tasks from API
+  errorMessage = '' //To show errors
+  voteSelect= []; //Array for choosing vote option
+  user = { //Current user info
     username: '',
     house: '',
     img: '',
@@ -25,6 +26,7 @@ export class FeedComponent implements OnInit {
 
   constructor(private api: ApiService, private god: GodService) { }
 
+  //do initial API requests and start running update func every second
   ngOnInit() {
     this.api.getUser()
         .then( apiResult => {
@@ -49,15 +51,8 @@ export class FeedComponent implements OnInit {
 
     this.api.getLoans()
         .then( apiResult => {
-            this.loans = apiResult
-            this.loans.forEach( loan=>{
-              loan.payer = $.grep(this.roommates, function(e){ return e._id == loan.payerId; })[0];
-              loan.receiver = $.grep(this.roommates, function(e){ return e._id == loan.receiverId; })[0];
-              if(loan.receiver === this.user._id)
-                loan.currentUserIsReceiver = true
-                else
-                loan.currentUserIsReceiver = false
-            })
+            this.loadedLoans = apiResult
+            this.updateLoanPeople()
         })
         .catch( err => console.log(err))
 
@@ -73,6 +68,7 @@ export class FeedComponent implements OnInit {
 
   }
 
+  //Clicked on vote oprion -> send request to API
   voteClick(id){
 
     let val;
@@ -84,6 +80,8 @@ export class FeedComponent implements OnInit {
       })
       .catch( err => console.log(err))
   }
+
+  //Clicked on CheckMark on task to delete
   deleteTask(id){
     this.api.deleteTask(id)
       .then( apiResult => {
@@ -92,7 +90,9 @@ export class FeedComponent implements OnInit {
       .catch( err => console.log(err))
   }
 
+  //Deserialize roommates : Assign roommates to loans ( find by Id )
   updateLoanPeople(){
+     this.loans = this.loadedLoans.slice()
     this.loans.forEach( loan=>{
       loan.payer = $.grep(this.roommates, function(e){ return e._id == loan.payerId; })[0];
       loan.receiver = $.grep(this.roommates, function(e){ return e._id == loan.receiverId; })[0];
@@ -104,6 +104,7 @@ export class FeedComponent implements OnInit {
     // console.log(this.loans)
   }
 
+  //Make API requests to get most recent data
   updateData(){
     this.api.getVotes()
       .then( apiResult => {
@@ -121,8 +122,8 @@ export class FeedComponent implements OnInit {
 
     this.api.getLoans()
         .then( apiResult => {
-          if(JSON.stringify(this.tasks)!=JSON.stringify(apiResult))
-            this.loans = apiResult
+          if(JSON.stringify(this.loadedLoans)!=JSON.stringify(apiResult))
+            this.loadedLoans = apiResult
             this.updateLoanPeople();
         })
         .catch( err => console.log(err))

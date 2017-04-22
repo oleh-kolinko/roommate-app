@@ -31,9 +31,9 @@ label:hover{
   z-index: 0;
 }
 .loan{
-  background-color: #f44336;
+  /*background-color: #f44336;*/
   color: #333;
-  padding: 0px 0px 0px 0px !important;
+  padding: 5px 5px 5px 5px !important;
 }
 
 

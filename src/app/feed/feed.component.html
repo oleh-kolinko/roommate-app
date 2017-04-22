@@ -15,9 +15,10 @@
     </span>
   </md-card>
 </div>
-<div class="row">
 
-<!-- ================================================================== -->
+<div class="row">
+  <!-- ================================================================== -->
+
   <div class='col s12 offset-l1 l5'>
     <h3 class='center-align'>VOTES:</h3>
     <div *ngFor='let vote of votes; let i = index'>
@@ -67,37 +68,7 @@
     </div>
   </div>
 
-  <!-- ================================================================== -->
-  <div class='col s12 l5'>
-    <h3 class='center-align'>LOANS:</h3>
-    <div *ngFor='let loan of loans'>
-      <md-card class='card loan col s12 hoverable'>
 
-        <div class='' *ngIf='!loan.currentUserIsReceiver'><h4 class='center-align'>
-          You owe {{loan.cost}}$ to
-          <span class="chip" *ngIf='loan.receiver'>
-            <img [src]="loan.receiver.img" alt="Person">
-            {{loan.receiver.username | uppercase}}
-          </span>
-          for {{loan.name}}
-        </h4></div>
-        <div class='' *ngIf='loan.currentUserIsReceiver'><h4 class='center-align'>
-
-          <span class="chip" *ngIf='loan.payer'>
-            <img [src]="loan.payer.img" alt="Person">
-            {{loan.payer.username | uppercase}}
-          </span>
-          owe you {{loan.cost}}$
-          for {{loan.name}}
-        </h4></div>
-
-        <!-- <div class='cat-name'>{{loan.category}} </div> -->
-
-      </md-card>
-
-    </div>
-
-  </div>
   <!-- ================================================================= -->
   <div class='col s12 l5'>
     <h3 class='center-align'>TASKS:</h3>
@@ -120,4 +91,40 @@
     </div>
   </div>
 
+</div>
+<!-- ================================================================== -->
+<div class='container'>
+
+<div class='row'>
+
+  <div class='col s12 '>
+    <div *ngFor='let loan of loans'>
+      <md-card class='card loan col s12 amb'>
+
+        <div class='' *ngIf='!loan.currentUserIsReceiver'><h6 class='center-align'>
+          You owe {{loan.cost}}$ to
+          <span class="chip" *ngIf='loan.receiver'>
+            <img [src]="loan.receiver.img" alt="Person">
+            {{loan.receiver.username | uppercase}}
+          </span>
+          for {{loan.name}}
+        </h6></div>
+        <div class='' *ngIf='loan.currentUserIsReceiver'><h6 class='center-align'>
+
+          <span class="chip" *ngIf='loan.payer'>
+            <img [src]="loan.payer.img" alt="Person">
+            {{loan.payer.username | uppercase}}
+          </span>
+          owe you {{loan.cost}}$
+          for {{loan.name}}
+        </h6></div>
+
+        <!-- <div class='cat-name'>{{loan.category}} </div> -->
+
+      </md-card>
+
+    </div>
+
+  </div>
+</div>
 </div>
