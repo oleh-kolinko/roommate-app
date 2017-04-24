@@ -11,12 +11,14 @@ declare var $: any;
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
+  //categories for drop down menu
   categories = [
     {value: 'general', viewValue: 'General'},
     {value: 'chores', viewValue: 'Chores'},
     {value: 'fun', viewValue: 'Fun'}
   ];
 
+  //info about new TASK, connected to inputs
   taskInfo = {
     name: '',
     category: 'general',
@@ -30,6 +32,7 @@ export class TasksComponent implements OnInit {
     private navigator: Router
   ) { }
 
+  //for pop up messages
   toast(message) {
     this.snackBar.open(message, '', {
       duration: 4000,
@@ -43,15 +46,17 @@ export class TasksComponent implements OnInit {
   });
   }
 
+  //Clicked on create button:
   create(){
     //get the date from date picker
     let year: string = $('.datepicker').pickadate('picker').get('highlight', 'yyyy');
     let day: string = $('.datepicker').pickadate('picker').get('highlight', 'dd');
     let month: string = $('.datepicker').pickadate('picker').get('highlight', 'mm');
 
-    const date = new Date(+year, +month-1, +day);
+    const date = new Date(+year, +month-1, +day); //Creating new DATE based on inputs
     this.taskInfo.date = date;
 
+    //send to API
     this.api.postTasks(this.taskInfo)
         .then( apiResult => {
           if(apiResult.errors)

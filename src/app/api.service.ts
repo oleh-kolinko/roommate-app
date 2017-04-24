@@ -12,25 +12,24 @@ export class ApiService {
   constructor(private http: Http, private god: GodService,) { }
 
   //VOTES
-  getVotes(){
+  getVotes(){//Get all votes
     return this.http.get(`${this.BASE_URL}/api/votes`)
     .toPromise()
     .then( apiResponse => apiResponse.json() )
   }
-  postVotes(obj){
-
+  postVotes(obj){//create new Vote
     return this.http.post(`${this.BASE_URL}/api/votes`,obj)
     .toPromise()
     .then( apiResponse => apiResponse.json() )
   }
-  postVoteOption(id, i, userId){
+  postVoteOption(id, i, userId){//Make a vote
 
-    const obj={
+    const obj={//make obj from params
       id: id,
       i: i,
       userId: userId
     }
-    console.log(obj)
+
 
     return this.http.put(`${this.BASE_URL}/api/votes`,obj)
     .toPromise()
@@ -38,7 +37,7 @@ export class ApiService {
   }
 
   //ROOMMATES
-  getRoommates(houseid){
+  getRoommates(houseid){//get all roommates
     const obj={
       id:houseid
     }
@@ -48,17 +47,17 @@ export class ApiService {
   }
 
   //TASKS
-  getTasks(){
+  getTasks(){//get all tasks
     return this.http.get(`${this.BASE_URL}/api/tasks`)
     .toPromise()
     .then( apiResponse => apiResponse.json() )
   }
-  postTasks(obj){
+  postTasks(obj){//create new task
     return this.http.post(`${this.BASE_URL}/api/tasks`,obj)
     .toPromise()
     .then( apiResponse => apiResponse.json() )
   }
-  deleteTask(id){
+  deleteTask(id){//Delete individual task
     const obj={
       id:id
     }
@@ -68,12 +67,12 @@ export class ApiService {
   }
 
   //LOANS
-  getLoans(){
+  getLoans(){//get all loans
     return this.http.get(`${this.BASE_URL}/api/loans`)
     .toPromise()
     .then( apiResponse => apiResponse.json() )
   }
-  postLoans(obj){
+  postLoans(obj){//Create new Loan
     return this.http.post(`${this.BASE_URL}/api/loans`,obj)
     .toPromise()
     .then( apiResponse => apiResponse.json() )

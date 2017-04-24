@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./money.component.css']
 })
 export class MoneyComponent implements OnInit {
-  loanInfo = {
+  loanInfo = { //object to send to backend
     payers: [],
   };
-  roommates = [];
+  roommates = []; //all roommates
 
   constructor(
     private god: GodService,
@@ -23,7 +23,7 @@ export class MoneyComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-
+    //geting user
     this.api.getUser()
         .then( apiResult => {
           this.api.getRoommates(apiResult.house)
@@ -37,15 +37,16 @@ export class MoneyComponent implements OnInit {
         .catch( err => console.log(err))
 
   }
-
+  //for pop up messages
   toast(message) {
     this.snackBar.open(message, '', {
       duration: 4000,
     });
   }
 
+  //click on create button
   create(){
-    console.log(this.loanInfo)
+    //console.log(this.loanInfo)
     this.loanInfo.payers = [];//init of payers array
     this.roommates.forEach(roommate =>{
       if (roommate.toggleValue)
